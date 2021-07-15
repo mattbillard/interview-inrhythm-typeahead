@@ -3,13 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Typeahead } from '../typeahead/typeahead';
-import { IStoreState } from '../../redux';
+import { getCountries, IStoreState, setCountry } from '../../redux';
+
+import './form-page.css';
 
 export interface IFormPage {}
 
 export const FormPage: React.FC<IFormPage> = (props) => {
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState('');
+  // const [countries, setCountries] = useState([]);
+  // const [country, setCountry] = useState('');
+  const dispatch = useDispatch();
+  const { country, countries } = useSelector((state: IStoreState) => state.sampleReducer);
+
 
   /**
    * TODO: 
@@ -23,15 +28,13 @@ export const FormPage: React.FC<IFormPage> = (props) => {
   useEffect(() => {
     (async () => {
       // TODO: move this into actions/redux
-      const url = `/api/countries.json`;
-      const response = await axios.get(url);  
-      setCountries(response.data);  
+      dispatch(getCountries());
     })();
   }, []);
 
   const handleClick = (choice: string) => {
     // TODO: move this into actions/redux
-    setCountry(choice);
+    dispatch(setCountry(choice));
   };
 
   return (
@@ -39,7 +42,7 @@ export const FormPage: React.FC<IFormPage> = (props) => {
       <form>
         <label>Country: </label>
         <Typeahead options={countries} onChange={handleClick} />
-        <button type="submit">Submit</button>
+        <button className="submit-btn" type="submit">Submit</button>
         <br />
         <br />
         You chose: {country}

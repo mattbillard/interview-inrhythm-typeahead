@@ -1,7 +1,45 @@
-.typeahead {
+.typeahead ul {
+  max-height: 300px;
+  max-width: 300px;
+  margin-top: 10px;
+  overflow-y: scroll;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 3px;
+  border: 1px solid rgb(202, 187, 187);;
+}
+
+.typeahead li {
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 0px 5px 3px;
+  color:rgb(43, 43, 43);
+}
+
+.typeahead li:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.typeahead input {
+  border-radius: 5px;
+  padding: 10px 0px 10px 5px;
+  width: 300px;
+  border: 1px solid lightgray;
+}
+
+.typeahead input::placeholder {
+  color: gray;
+  font-size: 12px;
+}
+
+.typeahead input:focus{
   /**
    * TODO:
    * - Write CSS for this component
    * - Refer to the image in the readme
    */
+   border-color: rgba(229, 103, 23, 0.8);
+   box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+   outline: 0 none;  
 }
