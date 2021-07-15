@@ -1,0 +1,1 @@
+export const COUNTRIES_API = '/api/countries.json'

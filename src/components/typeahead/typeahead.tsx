@@ -12,7 +12,7 @@ export const Typeahead = (props) => {
   const [searchText, setSearchText] = useState('');
   const [filteredOptions, setFilteredOptions] = useState([]);
 
-  const handleChange = (event) => {
+  const handleOnChange = (event) => {
     const text = event.target.value;
     setSearchText(text);
     const filtered = text
@@ -21,7 +21,7 @@ export const Typeahead = (props) => {
     setFilteredOptions(filtered);
   };
 
-  const onClick = (choice: string) => {
+  const handleOnClick = (choice: string) => {
     setSearchText(choice);
     setFilteredOptions([]);
     onChange(choice);
@@ -31,18 +31,21 @@ export const Typeahead = (props) => {
     <div className="typeahead">
       <input
         type="text"
-        onChange={handleChange}
+        onChange={handleOnChange}
         value={searchText}
       />
+      {filteredOptions.length !== 0 &&
       <ul>
-        {filteredOptions.map((option) => {
-          return (
-            <li key={option}>
-              <a onClick={() => onClick(option)}>{option}</a>
-            </li>
-          );
-        })}
-      </ul>
+      {filteredOptions.map((option) => {
+        return (
+          <li key={option}>
+            <a onClick={() => handleOnClick(option)}>{option}</a>
+          </li>
+        );
+      })}
+    </ul>
+      }
+
     </div>
   );
 };
