@@ -1,13 +1,33 @@
-.typeahead {
-  /**
-   * TODO:
-   * - Write CSS for this component
-   * - Refer to the image in the readme
-   * 
-   * - Here are some sample colors to help you
-   *   - orange button: ##f36b0a
-   *   - input border: #444444
-   *   - typeahead choices background: #e2e2e2
-   *   - typeahead choices background with hover: #fff
-   */
+.typeahead ul {
+  background-color: #e2e2e2;
+  border-radius: 4px;
+  border: solid 2px #c5c5c5;
+  height: 400px;
+  list-style: none;
+  margin-bottom: 10px;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 0;
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+}
+
+.typeahead input, ul {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.typeahead input, ul > li {
+  padding: 10px;
+}
+
+.typeahead input, ul > li:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.typeahead input, ul > li > a {
+  color: #444;
+  text-decoration: none;
 }

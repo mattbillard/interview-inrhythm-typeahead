@@ -1,48 +1,52 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Typeahead } from '../typeahead/typeahead';
-import { IStoreState } from '../../redux';
+import { getCountries, IStoreState, setCountry } from '../../redux';
+
+import './form-page.css';
 
 export interface IFormPage {}
 
 export const FormPage: React.FC<IFormPage> = (props) => {
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState('');
-
-  /**
-   * TODO: 
-   * This component currently uses setState. We would like to use Redux instead
-   * - Please change the useEffect and handleClick methods to dispatch actions instead
-   * - Here are two lines you might need
-   *    const { country, countries } = useSelector((state: IStoreState) => state.sampleReducer);
-   *    const dispatch = useDispatch();
-   */
+  const { country, countries } = useSelector((state: IStoreState) => state.sampleReducer);
+  const typeaheadRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      // TODO: move this into actions/redux
-      const url = `/api/countries.json`;
-      const response = await axios.get(url);  
-      setCountries(response.data);  
-    })();
+    loadCountries();
+    setTimeout(() => typeaheadRef.current?.focus());
   }, []);
 
+  const loadCountries = async () => {
+    await dispatch(getCountries());
+  };
+
   const handleClick = (choice: string) => {
-    // TODO: move this into actions/redux
-    setCountry(choice);
+    dispatch(setCountry(choice));
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    alert(`You chose: ${country}`);
   };
 
   return (
     <>
-      <form>
-        <label>Country: </label>
-        <Typeahead options={countries} onChange={handleClick} />
-        <button type="submit">Submit</button>
-        <br />
-        <br />
-        You chose: {country}
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Country: </label>
+          <Typeahead 
+            ref={typeaheadRef} 
+            options={countries} 
+            onChange={handleClick} 
+            value="" 
+          />
+          <button type="submit">Submit</button>
+          <br />
+          <br />
+          You chose: {country}
+        </div>
       </form>
     </>
   );
