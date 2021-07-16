@@ -29,20 +29,18 @@ export const Typeahead = (props) => {
 
   return (
     <div className="typeahead">
-      <input
-        type="text"
-        onChange={handleChange}
-        value={searchText}
-      />
-      <ul>
-        {filteredOptions.map((option) => {
-          return (
-            <li key={option}>
-              <a onClick={() => onClick(option)}>{option}</a>
-            </li>
-          );
-        })}
-      </ul>
+      <input type="text" onChange={handleChange} value={searchText} />
+      {searchText && filteredOptions.length > 0 && (
+        <ul>
+          {filteredOptions.map((option) => {
+            return (
+              <li key={option}>
+                <a onClick={() => onClick(option)}>{option}</a>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };
