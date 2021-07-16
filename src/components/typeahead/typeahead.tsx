@@ -25,6 +25,12 @@ export const Typeahead = (props) => {
     onChange(choice);
   };
 
+  const onKeydown = (e, option) => {
+    if (e.key === 'Enter') {
+      onClick(option)
+    }
+  }
+
   return (
     <div className="typeahead">
       <input
@@ -36,8 +42,15 @@ export const Typeahead = (props) => {
       <ul>
         {filteredOptions.map((option) => {
           return (
-            <li key={option}>
-              <a onClick={() => onClick(option)}>{option}</a>
+            <li
+              key={option}
+              onClick={() => onClick(option)}
+              onKeyDown={(e) => onKeydown(e, option)}
+              tabIndex={0}
+            >  
+              <a>
+                {option}
+              </a>
             </li>
           );
         })}

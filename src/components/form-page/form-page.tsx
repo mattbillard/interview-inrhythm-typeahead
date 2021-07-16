@@ -25,14 +25,51 @@ export const FormPage: React.FC<IFormPage> = (props) => {
     dispatch(getCountries())
   }, []);
 
+  const handleDownArrow = (focusedInput, focusedItem) => {
+    if (focusedInput) {
+      const firstItem = (document.querySelector('li'));
+      if (firstItem) {
+        firstItem.focus();
+      }
+    } else if (focusedItem) {
+      const nextItem = focusedItem.nextSibling;
+      if (nextItem) {
+        (nextItem as any).focus();
+      }
+    }
+  }
+
+  const handleUpArrow = (_, focusedItem) => {
+    if (focusedItem) {
+      const previousItem = focusedItem.previousSibling;
+      const input = document.querySelector('input');
+        (previousItem || input).focus();
+    }
+  }
+
+  const handlers = {
+    ArrowDown: handleDownArrow,
+    ArrowUp: handleUpArrow
+  };
+
+  const handleKeyDown = (e) => {
+    const focusedInput = document.querySelector('input:focus');
+    const focusedItem = document.querySelector('li:focus');
+    const handler = handlers[e.key];
+    
+    if (handler) {
+      e.preventDefault();
+      handler(focusedInput, focusedItem);
+    }
+  }
+
   const onChange = (choice: string) => {
-    console.log('chocie: ', choice);
     dispatch(setCountry(choice));
   };
 
   return (
     <>
-      <form className="typeahead-form">
+      <form className="typeahead-form" onKeyDown={handleKeyDown}>
         <label>Country: </label>
         <Typeahead options={countries} onChange={onChange} />
         <button type="submit">Submit</button>
