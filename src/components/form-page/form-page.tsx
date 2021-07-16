@@ -1,15 +1,15 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Typeahead } from '../typeahead/typeahead';
-import { IStoreState } from '../../redux';
+import { IStoreState, setCountry, getCountries } from '../../redux';
+import './form-page.scss';
 
 export interface IFormPage {}
 
 export const FormPage: React.FC<IFormPage> = (props) => {
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState('');
+  const { countries, country } = useSelector((state: IStoreState) => state);
+  const dispatch = useDispatch();
 
   /**
    * TODO: 
@@ -21,22 +21,18 @@ export const FormPage: React.FC<IFormPage> = (props) => {
    */
 
   useEffect(() => {
-    (async () => {
-      // TODO: move this into actions/redux
-      const url = `/api/countries.json`;
-      const response = await axios.get(url);  
-      setCountries(response.data);  
-    })();
+    // TODO: move this into actions/redux
+    dispatch(getCountries())
   }, []);
 
   const onChange = (choice: string) => {
-    // TODO: move this into actions/redux
-    setCountry(choice);
+    console.log('chocie: ', choice);
+    dispatch(setCountry(choice));
   };
 
   return (
     <>
-      <form>
+      <form className="typeahead-form">
         <label>Country: </label>
         <Typeahead options={countries} onChange={onChange} />
         <button type="submit">Submit</button>

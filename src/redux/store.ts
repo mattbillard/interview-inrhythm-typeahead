@@ -1,12 +1,10 @@
-import { applyMiddleware, combineReducers, createStore, } from 'redux';
+import { applyMiddleware, createStore, } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import { sampleReducer } from './reducer';
+import { app } from './reducer';
 
-const rootReducer = combineReducers({
-  sampleReducer
-});
+const rootReducer = app
 
 export type IStoreState = ReturnType<typeof rootReducer>;
 

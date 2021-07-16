@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import './typeahead.css';
-
 export interface ITypeahead {
   options: string[];
   onChange: (choice: string) => void;
@@ -33,6 +31,7 @@ export const Typeahead = (props) => {
         type="text"
         onChange={handleChange}
         value={searchText}
+        placeholder="start typing..."
       />
       <ul>
         {filteredOptions.map((option) => {
