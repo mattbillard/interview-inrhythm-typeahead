@@ -33,8 +33,9 @@ export const Typeahead = (props) => {
         type="text"
         onChange={handleChange}
         value={searchText}
+        placeholder="start typing..."
       />
-      <ul>
+      <ul className={filteredOptions.length > 0 ? 'border' : ''}>
         {filteredOptions.map((option) => {
           return (
             <li key={option}>

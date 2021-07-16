@@ -1,4 +1,5 @@
 import { Reducer } from 'redux';
+import {ActionTypes} from "./action-types";
 
 /**
  * TODO:
@@ -7,9 +8,13 @@ import { Reducer } from 'redux';
  */
 
 export interface ISampleReducerState {
+  country: string | null,
+  countries: string[];
 }
 
 const initialState: ISampleReducerState = {
+  country: null,
+  countries: []
 };
 
 export const sampleReducer: Reducer<ISampleReducerState> = (state = initialState, action) => {
@@ -20,6 +25,8 @@ export const sampleReducer: Reducer<ISampleReducerState> = (state = initialState
      * - Store the countries in the reducer
      */
 
+    case ActionTypes.COUNTRIES_RECEIVED:
+      return { ...state, countries: action.payload };
 
     /**
      * TODO:
@@ -27,6 +34,8 @@ export const sampleReducer: Reducer<ISampleReducerState> = (state = initialState
      * - Store the country in the reducer
      */
 
+    case ActionTypes.SET_COUNTRY:
+      return { ...state, country: action.payload };
 
     default:
       return state;

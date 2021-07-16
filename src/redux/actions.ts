@@ -1,15 +1,26 @@
-import axios from 'axios';
+import { ActionTypes } from "./action-types";
 
-/**
- * TODO:
- * - Implement getCountries
- * - Use Axios or fetch to get the countries from `/api/countries.json`
- * - Store the result in the reducer
- */
+interface GetCountriesAction {
+    type:ActionTypes.GET_COUNTRIES
+}
+
+interface GetCountriesErrorAction {
+    type: ActionTypes.GET_COUNTRIES_ERROR,
+    payload: string
+}
+
+interface CountriesReceivedAction {
+    type:ActionTypes.COUNTRIES_RECEIVED,
+    payload: []
+}
 
 
-/**
- * TODO:
- * - Implement setCountry
- * - Store the country in the reducer
- */
+interface SetCountryAction {
+    type: ActionTypes.SET_COUNTRY,
+    payload: string;
+}
+export type Action =
+    | GetCountriesAction
+    | GetCountriesErrorAction
+    | CountriesReceivedAction
+    | SetCountryAction;
