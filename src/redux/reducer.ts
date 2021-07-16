@@ -7,12 +7,17 @@ import { Reducer } from 'redux';
  */
 
 export interface ISampleReducerState {
+  country: string
+  countries: string[] | []
 }
 
 const initialState: ISampleReducerState = {
+  country: "",
+  countries: []
 };
 
 export const sampleReducer: Reducer<ISampleReducerState> = (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     /**
      * TODO:
@@ -26,7 +31,13 @@ export const sampleReducer: Reducer<ISampleReducerState> = (state = initialState
      * - Implement case SET_COUNTRY
      * - Store the country in the reducer
      */
+     case 'SET_COUNTRY':
+     console.log(state.country, action, action.payload,  "SET COUNTRY REDUCER")
 
+     return{
+       ...state,
+       country: action.payload
+     }
 
     default:
       return state;

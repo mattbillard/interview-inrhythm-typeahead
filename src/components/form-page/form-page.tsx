@@ -1,18 +1,16 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Typeahead } from '../typeahead/typeahead';
-import { IStoreState } from '../../redux';
-
+import { IStoreState, setCountry } from '../../redux';
 export interface IFormPage {}
 
 export const FormPage: React.FC<IFormPage> = (props) => {
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState('');
-
+  const { country, countries } = useSelector((state: IStoreState) => state.sampleReducer);
+  const dispatch = useDispatch();
   /**
-   * TODO: 
+   * TODO:
    * This component currently uses setState. We would like to use Redux instead
    * - Please change the useEffect and handleClick methods to dispatch actions instead
    * - Here are two lines you might need
@@ -24,19 +22,26 @@ export const FormPage: React.FC<IFormPage> = (props) => {
     (async () => {
       // TODO: move this into actions/redux
       const url = `/api/countries.json`;
-      const response = await axios.get(url);  
-      setCountries(response.data);  
+      const response = await axios.get(url);
+      // setCountries(response.data);
     })();
   }, []);
 
   const handleClick = (choice: string) => {
-    // TODO: move this into actions/redux
-    setCountry(choice);
+    console.log(choice,"choice")
+    dispatch(setCountry(choice))
+
   };
 
+  const handleSubmit = (event: React.FormEvent) =>{
+    event.preventDefault()
+  }
+
+
+  console.log(country, "country")
   return (
     <>
-      <form>
+      <form onSubmit={(event)=> handleSubmit(event)}>
         <label>Country: </label>
         <Typeahead options={countries} onChange={handleClick} />
         <button type="submit">Submit</button>

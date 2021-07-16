@@ -7,9 +7,15 @@ import axios from 'axios';
  * - Store the result in the reducer
  */
 
+// export const getCountries
 
 /**
  * TODO:
  * - Implement setCountry
  * - Store the country in the reducer
  */
+
+ export const setCountry = (country: string) =>({
+   type: "SET_COUNTRY",
+   payload: country
+ })
