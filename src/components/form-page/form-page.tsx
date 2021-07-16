@@ -1,37 +1,24 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Typeahead } from '../typeahead/typeahead';
+
+import { setCountry, getCountries } from '../../redux/actions';
 import { IStoreState } from '../../redux';
 
-export interface IFormPage {}
+export interface IFormPage { }
 
 export const FormPage: React.FC<IFormPage> = (props) => {
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState('');
 
-  /**
-   * TODO: 
-   * This component currently uses setState. We would like to use Redux instead
-   * - Please change the useEffect and onChange methods to dispatch actions instead
-   * - Here are two lines you might need
-   *    const { country, countries } = useSelector((state: IStoreState) => state.sampleReducer);
-   *    const dispatch = useDispatch();
-   */
+  const dispatch = useDispatch();
+  const { country, countries } = useSelector((state: IStoreState) => state.sampleReducer);
 
   useEffect(() => {
-    (async () => {
-      // TODO: move this into actions/redux
-      const url = `/api/countries.json`;
-      const response = await axios.get(url);  
-      setCountries(response.data);  
-    })();
+    getCountries(dispatch)();
   }, []);
 
   const onChange = (choice: string) => {
-    // TODO: move this into actions/redux
-    setCountry(choice);
+    dispatch(setCountry(choice));
   };
 
   return (
@@ -39,7 +26,13 @@ export const FormPage: React.FC<IFormPage> = (props) => {
       <form>
         <label>Country: </label>
         <Typeahead options={countries} onChange={onChange} />
-        <button type="submit">Submit</button>
+        <button style={{
+          backgroundColor: '#f36b0a',
+          color: '#fff',
+          border: 'none',
+          padding: '7px 15px',
+          borderRadius: '3px'
+        }} type="submit">Submit</button>
         <br />
         <br />
         You chose: {country}
