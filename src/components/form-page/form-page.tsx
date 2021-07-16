@@ -1,3 +1,5 @@
+import './form-page.css';
+
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,13 +38,17 @@ export const FormPage: React.FC<IFormPage> = (props) => {
 
   return (
     <>
-      <form>
+      <form >
+        <div className="countryLabel">
         <label>Country: </label>
+        </div>
         <Typeahead options={countries} onChange={handleClick} />
-        <button type="submit">Submit</button>
+        <button type="submit" className="submitBtn">Submit</button>
         <br />
         <br />
+        <div className="selectedCountry">
         You chose: {country}
+        </div>
       </form>
     </>
   );

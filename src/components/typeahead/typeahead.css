@@ -1,7 +1,35 @@
-.typeahead {
-  /**
-   * TODO:
-   * - Write CSS for this component
-   * - Refer to the image in the readme
-   */
+.typeahead input{
+  width:400px;
+  padding: 8px 8px;
+  border-radius: 3px;
+  border: 2px solid #D8D8D8;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.typeahead input:focus{
+  border: 2px solid #ff6600;
+  outline-color: #ff6600;
+}
+
+.countryList{
+  height:250px;
+  width: 400px;
+  overflow:hidden; 
+  overflow-y:scroll;
+  background-color: #E0E0E0;
+  list-style-type: none;
+  padding: 0;
+  border: 2px solid #D0D0D0;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.countryList li{
+padding: 5px 10px;
+}
+
+.countryList li:hover {
+  background-color: white;
+  cursor: pointer;
 }

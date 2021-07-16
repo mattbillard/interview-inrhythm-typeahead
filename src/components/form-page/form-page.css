@@ -1,0 +1,17 @@
+.countryLabel{
+    padding: 10px 10px;
+}
+
+#submitBtn{
+    background-color: #ff6600; /* Green */
+    border: none;
+    color: white;
+    padding: 9px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 3px;
+    margin-left: 10px;
+}

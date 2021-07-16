@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 
 import './typeahead.css';
 
+import classnames from 'classnames';
+
+const COUNTRY_SEARCH_INPUT_PLACEHOLDER = "start typing...";
+
 export interface ITypeahead {
   options: string[];
   onChange: (choice: string) => void;
@@ -27,18 +31,21 @@ export const Typeahead = (props) => {
     onChange(choice);
   };
 
+  const countryListCls = filteredOptions.length ? classnames('countryList') : "";
+
   return (
     <div className="typeahead">
       <input
         type="text"
         onChange={handleChange}
         value={searchText}
+        placeholder={COUNTRY_SEARCH_INPUT_PLACEHOLDER}
       />
-      <ul>
+      <ul className={countryListCls}>
         {filteredOptions.map((option) => {
           return (
             <li key={option}>
-              <a onClick={() => onClick(option)}>{option}</a>
+              <a onClick={() => onClick(option)} className="countryListItem">{option}</a>
             </li>
           );
         })}
