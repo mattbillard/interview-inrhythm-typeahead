@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Typeahead } from '../typeahead/typeahead';
 import { IStoreState } from '../../redux';
+import './form-page.css';
 
 export interface IFormPage {}
 
@@ -39,7 +40,7 @@ export const FormPage: React.FC<IFormPage> = (props) => {
       <form>
         <label>Country: </label>
         <Typeahead options={countries} onChange={onChange} />
-        <button type="submit">Submit</button>
+        <button className='button' type="submit">Submit</button>
         <br />
         <br />
         You chose: {country}

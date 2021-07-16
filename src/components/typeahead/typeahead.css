@@ -11,3 +11,27 @@
    *   - typeahead choices background with hover: #fff
    */
 }
+
+input[type=text] {
+  width: 50%;
+  border: #444444;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus {
+  outline: 2px solid #f36b0a;
+}
+
+.option {
+  width: 50%;
+  background-color: #e2e2e2;
+}
+
+.option:hover {
+  background-color: #fff;
+}
+
+
+/*line 8 in the example there are two ## */

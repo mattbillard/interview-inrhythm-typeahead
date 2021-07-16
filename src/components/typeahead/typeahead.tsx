@@ -37,12 +37,15 @@ export const Typeahead = (props) => {
       <ul>
         {filteredOptions.map((option) => {
           return (
-            <li key={option}>
+            <div className='option' key={option}>
               <a onClick={() => onClick(option)}>{option}</a>
-            </li>
+            </div>
           );
         })}
       </ul>
     </div>
   );
 };
+
+
+//centering the input field and the submit button will make the form look prettier
