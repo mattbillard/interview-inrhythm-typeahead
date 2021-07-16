@@ -28,9 +28,14 @@ export const FormPage: React.FC<IFormPage> = (props) => {
     dispatch(setCountry(choice));
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`You chose ${country}`);
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Country: </label>
         <Typeahead options={countries} onChange={onChange} />
         <button type="submit">Submit</button>

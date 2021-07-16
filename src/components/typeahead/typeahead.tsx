@@ -19,9 +19,24 @@ export const Typeahead = (props) => {
       ? options.filter((option) => option.toLowerCase().includes(text.toLowerCase()))
       : [];
     setFilteredOptions(filtered);
+    onChange('');
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      event.stopPropagation();
+      event.preventDefault();
+
+      const choice = filteredOptions[0];
+      makeChoice(choice);
+    }
   };
 
   const onClick = (choice: string) => {
+    makeChoice(choice);
+  };
+
+  const makeChoice = (choice: string) => {
     setSearchText(choice);
     setFilteredOptions([]);
     onChange(choice);
@@ -29,7 +44,7 @@ export const Typeahead = (props) => {
 
   return (
     <div className="typeahead">
-      <input type="text" onChange={handleChange} value={searchText} />
+      <input type="text" onChange={handleChange} onKeyPress={handleKeyPress} value={searchText} />
       {searchText && filteredOptions.length > 0 && (
         <ul>
           {filteredOptions.map((option) => {

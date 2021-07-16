@@ -53,7 +53,15 @@ body {
   padding: 0;
 }
 
-.typeahead li:hover {
+.typeahead li:first-child {
+  background-color: #fff;
+}
+
+.typeahead ul:hover li:first-child {
+  background: none;
+}
+
+.typeahead ul:hover li:hover {
   background-color: #fff;
 }
 
