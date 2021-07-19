@@ -30,6 +30,17 @@ Most of all we just want to see how you code
 1. We have already built some code for you. Try it out in your browser. Look through the files.
 1. You may now start. Good luck!
 
+### Alternate Setup
+1. If there are any issues installing packages or running locally, you can run this repo on Gitpod
+1. Go to https://gitpod.io/#github.com/mattbillard/interview-inrhythm-typeahead
+
+1. Create a branch with todays date and your name in this format:  
+   ```
+   git checkout -b YYYY-MM-DD-your-name
+   ```
+1. We have already built some code for you. Try it out in the Gitpod browser preview. Look through the files.
+1. You may now start. Good luck!
+
 ---
 
 ### Part A - Redux
