@@ -11,5 +11,43 @@
  */
 
 .typeahead {
+    margin-bottom: 10px;
+    position: relative;
+}
 
+.typeahead input {
+    padding: 5px 10px;
+    border: 1px solid #aaa;
+    outline-color: #f36b0a;
+}
+
+.typeahead ul {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #aaa;
+    position: absolute;
+    top: 33px;
+    left: 0;
+    width: 190px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.typeahead ul li{
+    padding: 5px 10px;
+    background-color: #e2e2e2;
+    text-decoration: none;
+    list-style: none;
+}
+
+.typeahead ul li:hover {
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 3px;
+    background-color: #f36b0a;
+    color: #fff;
 }

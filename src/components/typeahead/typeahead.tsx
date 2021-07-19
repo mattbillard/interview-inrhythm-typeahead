@@ -27,6 +27,21 @@ export const Typeahead = (props) => {
     onChange(choice);
   };
 
+  const renderList = () => {
+    if (filteredOptions.length === 0) {
+      return;
+    }
+
+    const renderedOptions = filteredOptions.map(option => (
+      <li key={option}>
+        <a onClick={() => onClick(option)}>{option}</a>
+      </li>
+    ));
+
+    return <ul>{renderedOptions}</ul>;
+  };
+
+
   return (
     <div className="typeahead">
       <input
@@ -34,15 +49,7 @@ export const Typeahead = (props) => {
         onChange={handleChange}
         value={searchText}
       />
-      <ul>
-        {filteredOptions.map((option) => {
-          return (
-            <li key={option}>
-              <a onClick={() => onClick(option)}>{option}</a>
-            </li>
-          );
-        })}
-      </ul>
+      {renderList()}
     </div>
   );
 };
