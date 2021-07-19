@@ -1,15 +1,21 @@
 import axios from 'axios';
 
-/**
- * TODO:
- * - Implement getCountries
- * - Use Axios or fetch to get the countries from `/api/countries.json`
- * - Store the result in the reducer
- */
+export const COUNTRIES_RECEIVED = 'COUNTRIES_RECEIVED';
+export const SET_COUNTRY = 'SET_COUNTRY';
 
+export const getCountries = dispatch => async () => {
+    const url = `/api/countries.json`;
+    const response = await axios.get(url);
+    const countries = response.data;
+    dispatch(countriesReceived(countries));
+}
 
-/**
- * TODO:
- * - Implement setCountry
- * - Store the country in the reducer
- */
+export const countriesReceived = (countries: string[]) => ({
+    type: COUNTRIES_RECEIVED,
+    countries
+})
+
+export const setCountry = (country: string) => ({
+    type: SET_COUNTRY,
+    country
+})
