@@ -22,21 +22,14 @@ export const Typeahead = (props) => {
    *    const dispatch = useDispatch();
    */
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     const text = event.target.value;
     setSearchText(text);
 
-    (async (q: string) => {
-      // TODO: move this into actions/redux
-      const url = `http://localhost:3030/api/countries`;
-      const response = await axios.get(url, {
-        params: {
-          q
-        }
-      });
-
-      setCountries(response.data);
-    })(text);
+    // TODO: move this into actions/redux
+    const url = `http://localhost:3030/api/countries`;
+    const response = await axios.get(url, { params: { q: text } });
+    setCountries(response.data);
   };
 
   const handleClick = (choice: string) => {
