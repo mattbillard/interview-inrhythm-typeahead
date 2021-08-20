@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './typeahead.css';
+import axios from "axios";
 
 export interface ITypeahead {
   options: string[];
@@ -8,23 +9,33 @@ export interface ITypeahead {
 }
 
 export const Typeahead = (props) => {
-  const { onChange, options } = props;
+  const { onClick } = props;
   const [searchText, setSearchText] = useState('');
-  const [filteredOptions, setFilteredOptions] = useState([]);
+  const [countries, setCountries] = useState([]);
 
-  const handleChange = (event) => {
+  /**
+   * TODO:
+   * This component currently uses setState. We would like to use Redux instead
+   * - Please change the handleChange methods to dispatch actions instead
+   * - Here are two lines you might need
+   *    const { countries } = useSelector((state: IStoreState) => state.sampleReducer);
+   *    const dispatch = useDispatch();
+   */
+
+  const handleChange = async (event) => {
     const text = event.target.value;
     setSearchText(text);
-    const filtered = text
-      ? options.filter((option) => option.toLowerCase().includes(text.toLowerCase()))
-      : [];
-    setFilteredOptions(filtered);
+
+    // TODO: move this into actions/redux
+    const url = `http://localhost:3030/api/countries`;
+    const response = await axios.get(url, { params: { q: text } });
+    setCountries(response.data);
   };
 
-  const onClick = (choice: string) => {
+  const handleClick = (choice: string) => {
     setSearchText(choice);
-    setFilteredOptions([]);
-    onChange(choice);
+    setCountries([]);
+    onClick(choice);
   };
 
   return (
@@ -35,10 +46,10 @@ export const Typeahead = (props) => {
         value={searchText}
       />
       <ul>
-        {filteredOptions.map((option) => {
+        {countries.map((option) => {
           return (
             <li key={option}>
-              <a onClick={() => onClick(option)}>{option}</a>
+              <a onClick={() => handleClick(option)}>{option}</a>
             </li>
           );
         })}

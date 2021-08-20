@@ -24,7 +24,8 @@ Most of all we just want to see how you code
    ```
 4. Run the following
    ```
-   npm install
+   npm ci
+   npm run start:express
    npm start
    ```
 5. We have already built some code for you. Try it out in your browser. Look through the files.
@@ -33,7 +34,7 @@ Most of all we just want to see how you code
 ---
 
 ### Part A - Redux
-- Open `form-page.tsx`
+- Open `form-page.tsx` and `typeahead.tsx`
 - We have provided a solution using useState
 - Follow the TODO comments and convert it to using Redux
 
