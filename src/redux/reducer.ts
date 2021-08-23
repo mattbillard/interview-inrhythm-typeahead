@@ -30,12 +30,12 @@ export const sampleReducer: Reducer<ISampleReducerState> = (state = initialState
     case 'COUNTRIES_RECEIVED' : 
         return {
           ...state,
-          countries: action.countries
+          countries: action.payload
         }
     case 'SET_COUNTRY' :
         return {
           ...state,
-          country: action.country
+          country: action.payload
         }
     /**
      * TODO:

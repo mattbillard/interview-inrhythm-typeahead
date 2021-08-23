@@ -19,7 +19,6 @@ export const getCountreis =  () => dispatch => {
     const url = `/api/countries.json`;
     axios.get(url).then(data => {        
         dispatch( countriesReceived(data.data) );
-        console.log({data})
     });  
 }
 /**
