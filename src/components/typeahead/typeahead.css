@@ -10,6 +10,39 @@
  *   - typeahead choices background with hover: #fff
  */
 
-.typeahead {
 
+
+.typeahead { position: relative; }
+
+.typeahead input{    
+    border: 1px solid #aaa;
+    padding: 5px 10px;
+    width: 330px;
+    outline: none;
+    border-radius: 3px;
+    margin-top: 0.5rem;
+}
+.typeahead input:focus {
+    border:2px solid  #f36b0a;
+    outline: none;
+}
+
+.typeahead ul {
+    position: absolute;
+    left: 0;
+    top: 25px;
+    max-height: 350px;
+    padding: 0;
+    width: 350px;
+    overflow: auto;
+}
+
+.typeahead ul > li {
+    background: #e2e2e2;
+    list-style-type: none;
+    padding: 10px;
+    cursor: pointer;
+}
+.typeahead ul > li:hover {
+    background: #fff;
 }

@@ -50,8 +50,16 @@ Most of all we just want to see how you code
 - Open `typeahead.tsx` and `form-page.tsx`
 - Propose some ideas that would improve the user-experience. We'll work on some together
 
+   1. We can add some animation to improve the user-experience. - fade-up, fade-down, etc.
+   2. Add loading bar to improve the user-experience.
+   3. Add clear icon for input
+   4. Add real country flag icons into the dropdown.
+
 ---
 
 ### Part D - Extras
 - If you've gotten through everything else, here's an extra section
 - Tell us what else you would add or improve 
+
+   1. We can use SCSS instead of CSS.
+   2. We can add Unit test in JEST
